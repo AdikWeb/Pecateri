@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Script/Character/Player/Player.cs" type="Script" id=1]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.75
+height = 1.75
+
+[node name="Player" type="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00162125, -0.00919175, 1.50204e-05 )
+collision_mask = 6
+script = ExtResource( 1 )
+
+[node name="Head" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.77854, 0 )
+
+[node name="Camera" type="Camera" parent="Head"]
+
+[node name="RayCast" type="RayCast" parent="Head"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.887, 0 )
+enabled = true
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.64109, 0 )
+shape = SubResource( 1 )
