@@ -3,6 +3,7 @@
     <TargetFramework>net472</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Folder Include="Scenes\Ui\LevelCards\" />
     <Folder Include="Script\Other\AI\" />
   </ItemGroup>
 </Project>

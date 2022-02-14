@@ -1,0 +1,121 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Script/UI/Menu/Menu.cs" type="Script" id=1]
+[ext_resource path="res://Scenes/UI/LevelCard.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Textures/Demo/3199.jpg" type="Texture" id=3]
+[ext_resource path="res://Textures/Demo/1593247303_248910.jpg" type="Texture" id=4]
+[ext_resource path="res://Themes/forms_themes.tres" type="Theme" id=5]
+
+[sub_resource type="Theme" id=1]
+
+[node name="MenuStart" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_edit_vertical_guides_": [ -165.0 ]
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.168627, 0.160784, 0.211765, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = -88.0
+margin_right = 198.0
+margin_bottom = -17.0
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="host" type="Button" parent="VBoxContainer"]
+margin_top = 9.0
+margin_right = 182.0
+margin_bottom = 27.0
+rect_pivot_offset = Vector2( -44, -119 )
+focus_mode = 0
+theme = ExtResource( 5 )
+enabled_focus_mode = 0
+text = "Create Host"
+align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="client" type="Button" parent="VBoxContainer"]
+margin_top = 31.0
+margin_right = 182.0
+margin_bottom = 49.0
+rect_pivot_offset = Vector2( -44, -119 )
+focus_mode = 0
+theme = ExtResource( 5 )
+enabled_focus_mode = 0
+text = "Conntect to host"
+align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GoMainMenu" type="Button" parent="VBoxContainer"]
+margin_top = 53.0
+margin_right = 182.0
+margin_bottom = 71.0
+focus_mode = 0
+theme = ExtResource( 5 )
+enabled_focus_mode = 0
+text = "Back"
+align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+anchor_right = 0.992
+anchor_bottom = 0.853
+margin_left = 16.0
+margin_top = 40.0
+margin_right = -7.80804
+margin_bottom = 0.199982
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer" type="GridContainer" parent="ScrollContainer"]
+margin_right = 141.0
+theme = SubResource( 1 )
+custom_constants/vseparation = 167
+custom_constants/hseparation = 141
+columns = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LevelCard" parent="ScrollContainer/GridContainer" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 0.0
+margin_bottom = 0.0
+LevelName = "Core"
+Preview = ExtResource( 4 )
+
+[node name="LevelCard2" parent="ScrollContainer/GridContainer" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 141.0
+margin_right = 141.0
+margin_bottom = 0.0
+LevelName = "Hentai_1"
+Preview = ExtResource( 3 )
+
+[connection signal="resized" from="." to="." method="_on_MenuStart_resized"]
+[connection signal="pressed" from="VBoxContainer/host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="VBoxContainer/GoMainMenu" to="." method="_on_GoMainMenu_pressed"]

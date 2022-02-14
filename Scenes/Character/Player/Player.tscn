@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Script/Character/Player/Player.cs" type="Script" id=1]
+[ext_resource path="res://Themes/forms_themes.tres" type="Theme" id=2]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.75
@@ -23,3 +24,61 @@ enabled = true
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.64109, 0 )
 shape = SubResource( 1 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="Pause" type="Control" parent="CanvasLayer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Pause"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0823529, 0.0823529, 0.0823529, 0.623529 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Pause"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -42.0
+margin_top = -22.0
+margin_right = 42.0
+margin_bottom = 22.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GoToMainMenu" type="Button" parent="CanvasLayer/Pause/VBoxContainer"]
+margin_right = 84.0
+margin_bottom = 18.0
+theme = ExtResource( 2 )
+text = "Main menu"
+
+[node name="ExitGame" type="Button" parent="CanvasLayer/Pause/VBoxContainer"]
+margin_top = 22.0
+margin_right = 84.0
+margin_bottom = 40.0
+theme = ExtResource( 2 )
+text = "Exit"
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+margin_left = 26.0
+margin_top = 22.0
+margin_right = 66.0
+margin_bottom = 36.0
+text = "FPS:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="CanvasLayer/Pause/VBoxContainer/GoToMainMenu" to="." method="_on_GoToMainMenu_pressed"]
+[connection signal="pressed" from="CanvasLayer/Pause/VBoxContainer/ExitGame" to="." method="_on_ExitGame_pressed"]
