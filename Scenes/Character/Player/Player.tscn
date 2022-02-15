@@ -57,16 +57,33 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GoToMainMenu" type="Button" parent="CanvasLayer/Pause/VBoxContainer"]
+[node name="lvl1" type="Button" parent="CanvasLayer/Pause/VBoxContainer"]
 margin_right = 84.0
 margin_bottom = 18.0
+theme = ExtResource( 2 )
+text = "lvl1"
+
+[node name="lvl2" type="Button" parent="CanvasLayer/Pause/VBoxContainer"]
+margin_top = 22.0
+margin_right = 84.0
+margin_bottom = 40.0
+theme = ExtResource( 2 )
+text = "lvl2"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GoToMainMenu" type="Button" parent="CanvasLayer/Pause/VBoxContainer"]
+margin_top = 44.0
+margin_right = 84.0
+margin_bottom = 62.0
 theme = ExtResource( 2 )
 text = "Main menu"
 
 [node name="ExitGame" type="Button" parent="CanvasLayer/Pause/VBoxContainer"]
-margin_top = 22.0
+margin_top = 66.0
 margin_right = 84.0
-margin_bottom = 40.0
+margin_bottom = 84.0
 theme = ExtResource( 2 )
 text = "Exit"
 
@@ -80,5 +97,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[connection signal="pressed" from="CanvasLayer/Pause/VBoxContainer/lvl1" to="." method="_on_lvl1_pressed"]
+[connection signal="pressed" from="CanvasLayer/Pause/VBoxContainer/lvl2" to="." method="_on_lvl2_pressed"]
 [connection signal="pressed" from="CanvasLayer/Pause/VBoxContainer/GoToMainMenu" to="." method="_on_GoToMainMenu_pressed"]
 [connection signal="pressed" from="CanvasLayer/Pause/VBoxContainer/ExitGame" to="." method="_on_ExitGame_pressed"]

@@ -5,32 +5,36 @@ public class Player : KinematicBody
 {
 
 	[Export]
-	private float ForwardSpeed = 10.0f;
-	
+	private float Strength = 4;
+
 	[Export]
-	private float BackwardSpeed = 10.0f;
-	
+	public int JumpImpulse = 7;
+
 	[Export]
-	private float LeftSpeed = 10.0f;
-	
-	[Export]
-	private float RightSpeed = 10.0f;
-	
-	[Export]
-	public int JumpImpulse = 20;
-	
+	private float Weight =	80;
+
 	[Export]
 	private int HAcceleration = 6;
 
+
 	[Export]
-	private float Mass = 6.0f;
+	private float ForwardSpeed = 7.0f;
 	
+	[Export]
+	private float BackwardSpeed = 7.0f;
+	
+	[Export]
+	private float LeftSpeed = 7.0f;
+	
+	[Export]
+	private float RightSpeed = 7.0f;
+	
+	private float Mass = 1;
+	private float JumpPawer;
 	private float Speed;
 	private Spatial Head;
-
 	private RayCast RayCastDown;
 	private Boolean FullContact = false;
-
 	private Vector3 GravityVec = new Vector3();
 	private Vector3 HVelocity = new Vector3();
 	private Vector3 Movement = new Vector3();
@@ -43,6 +47,9 @@ public class Player : KinematicBody
 		RayCastDown = GetNode<RayCast>("Head/RayCast");
 		OverlayMenu = GetNode<Control>("CanvasLayer/Pause");
 		FPS = GetNode<Label>("CanvasLayer/Label");
+		Mass = Math.Abs((float)Weight / Global.WorldGravity);
+		JumpPawer = Math.Abs(JumpImpulse * Strength - Mass);
+
 		Input.SetMouseMode(Input.MouseMode.Captured);
 	}
 
@@ -66,7 +73,8 @@ public class Player : KinematicBody
 		Vector3 direction = new Vector3();
 		if (!IsOnFloor())
 		{
-			GravityVec += Vector3.Down * Global.WorldGravity * Mass * delta;
+			float a = Weight + Global.WorldGravity / 11;
+			GravityVec += Vector3.Down * a * delta;
 		}
 		else if (IsOnFloor() && FullContact)
 		{
@@ -85,7 +93,7 @@ public class Player : KinematicBody
 
 		if (IsOnFloor() && Input.IsActionJustPressed("jump"))
 		{
-			GravityVec = Vector3.Up * JumpImpulse;
+			GravityVec = Vector3.Up * JumpPawer;
 		}
 		if (Input.IsActionPressed("move_forward"))
 		{
@@ -129,7 +137,22 @@ public class Player : KinematicBody
 	{
 		GetTree().Quit();
 	}
+	
+	private void _on_lvl1_pressed()
+	{
+		Root.GoToScene("World/Core");
+	}
+
+	private void _on_lvl2_pressed()
+	{
+		Root.GoToScene("World/Hentai_1");
+	}
+
 }
+
+
+
+
 
 
 

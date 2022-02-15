@@ -17,19 +17,15 @@ public class Root : Godot.Node
     static public void GoToScene(string SceneName)
     {
         string path = $"res://Scenes/{SceneName}.tscn";
-        GD.Print(CurrentScene);
-        if (ResourceLoader.HasCached(path))
-        {
-        }
-        else
-        {
-            Loader = ResourceLoader.LoadInteractive(path);
-            if (Loader == null) return;
+        PackedScene test = (PackedScene)ResourceLoader.Load(path, "", true);
+        GD.Print(test);
 
-            RootNode.SetProcess(true);
-            CurrentScene.QueueFree();
-            WaitFrame = 1;
-        }
+        Loader = ResourceLoader.LoadInteractive(path);
+        if (Loader == null) return;
+
+        RootNode.SetProcess(true);
+        CurrentScene.QueueFree();
+        WaitFrame = 1;
     }
 
     static public void GoToMainMenu()
